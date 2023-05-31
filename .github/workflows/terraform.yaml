@@ -14,7 +14,7 @@ on:
 
 env:
   AWS_REGION: us-east-2
-  TERRAFORM_VERSION: 4.67.0
+  TERRAFORM_VERSION: 1.4.6
 
 permissions:
   contents: read
