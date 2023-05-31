@@ -1,4 +1,4 @@
-name: terraform
+name: Terraform
 
 on: 
   push:
@@ -11,6 +11,10 @@ on:
     - main
     paths:
     - terraform/**
+
+env:
+  AWS_REGION: us-east-2
+  TERRAFORM_VERSION: 1.4.6
 
 permissions:
   contents: read
@@ -30,11 +34,70 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v2
       with:
         role-to-assume: ${{ secrets.AWS_TERRAFORM_ROLE }}
-        aws-region: us-east-2
-    - name: Say Hello
-      id: say_hello
-      run: |
-        echo "hello world"
+        aws-region: ${{ env.AWS_REGION }}
+    - name: Setup Terraform
+      id: setup_terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ env.TERRAFORM_VERSION }}
+        terraform_wrapper: false
+    - name: Terraform Init
+      id: terraform_init
+      run: terraform init
+      working-directory: ./terraform
+      shell: bash
+    - name: Terraform Plan
+      id: terraform_plan
+      run: terraform plan -input=false -no-color -out tf.plan
+      working-directory: ./terraform
+      shell: bash
+    - name: Terraform Show
+      id: terraform_show
+      run: terraform show -no-color tf.plan 2>&1 > /tmp/plan.txt
+      working-directory: ./terraform
+      shell: bash
+    - name: Comment on Pull Request
+      id: comment_on_pull_request
+      uses: actions/github-script@v6
+      if: github.event_name == 'pull_request'
+      with:
+        github-token: ${{ inputs.GITHUB_TOKEN }}
+        script: |
+          const fs = require("fs");
+          const plan = fs.readFileSync("/tmp/plan.txt", "utf8");
+          const maxGitHubBodyCharacters = 65536;
+
+          function chunkSubstr(str, size) {
+            const numChunks = Math.ceil(str.length / size)
+            const chunks = new Array(numChunks)
+            for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
+              chunks[i] = str.substr(o, size)
+            }
+            return chunks
+          }
+
+          // Split the Terraform plan into chunks if it's too big and can't fit into the GitHub Action
+          var plans = chunkSubstr(plan, maxGitHubBodyCharacters); 
+          for (let i = 0; i < plans.length; i++) {
+            const output = `### ${{ inputs.plan-title }} Part # ${i + 1}
+            #### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            <details><summary>Show Plan</summary>
+            \`\`\`\n
+            ${plans[i]}
+            \`\`\`
+            </details>
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ inputs.working-directory }}\`, Workflow: \`${{ github.workflow }}\`*`;   
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+          }
+    
 
 
 # # This is a basic workflow to help you get started with Actions
