@@ -1,0 +1,28 @@
+name: S3 Sync Bucket
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - ctnormand.com
+  
+jobs:
+  s3:
+    name: S3 Sync Bucket
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      id: checkout_repo
+      uses: actions/checkout@v3
+    - name: Configure AWS Credentials
+      id: configure_aws_credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: ${{ secrets.AWS_S3_ROLE }}
+        aws-region: ${{ vars.AWS_REGION }}
+    - name: Sync Bucket
+      id: sync_bucket
+      run: aws s3 sync . s3://www.ctnormand.com
+      working-directory: ./ctnormand.com
+      shell: bash

@@ -12,10 +12,6 @@ on:
     paths:
     - terraform/**
 
-env:
-  AWS_REGION: us-east-2
-  TERRAFORM_VERSION: 1.4.6
-
 permissions:
   contents: read
   id-token: write
@@ -34,12 +30,12 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v2
       with:
         role-to-assume: ${{ secrets.AWS_TERRAFORM_ROLE }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: ${{ vars.AWS_REGION }}
     - name: Setup Terraform
       id: setup_terraform
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: ${{ env.TERRAFORM_VERSION }}
+        terraform_version: ${{ vars.TERRAFORM_VERSION }}
         terraform_wrapper: false
     - name: Terraform Format
       id: terraform_format
