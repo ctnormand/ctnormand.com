@@ -51,12 +51,12 @@ jobs:
       shell: bash
     - name: Terraform Plan
       id: terraform_plan
-      run: terraform plan -input=false -no-color -out tf.plan
+      run: terraform plan -input=false -no-color -out /tmp/tf.plan
       working-directory: ./terraform
       shell: bash
     - name: Terraform Show
       id: terraform_show
-      run: terraform show -no-color tf.plan 2>&1 > /tmp/plan.txt
+      run: terraform show -no-color /tmp/tf.plan 2>&1 > /tmp/plan.txt
       working-directory: ./terraform
       shell: bash
     - name: Comment on Pull Request
@@ -87,7 +87,7 @@ jobs:
     - name: Terraform Apply
       id: terraform_apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -input=false tf.plan
+      run: terraform apply -input=false /tmp/tf.plan
       working-directory: ./terraform
       shell: bash
     
