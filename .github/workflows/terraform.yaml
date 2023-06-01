@@ -41,6 +41,11 @@ jobs:
       with:
         terraform_version: ${{ env.TERRAFORM_VERSION }}
         terraform_wrapper: false
+    - name: Terraform Format
+      id: terraform_format
+      run: terraform fmt --recursive --check
+      working-directory: ./terraform
+      shell: bash
     - name: Terraform Init
       id: terraform_init
       run: terraform init
@@ -62,7 +67,7 @@ jobs:
       if: github.event_name == 'pull_request'
       with:
         script: |
-          const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+          const output = `#### Terraform Format and Style 🖌\`${{ steps.terraform_format.outcome }}\`
           #### Terraform Initialization ⚙️\`${{ steps.terraform_init.outcome }}\`
           #### Terraform Plan 📖\`${{ steps.terraform_plan.outcome }}\``
         
