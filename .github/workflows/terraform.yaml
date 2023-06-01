@@ -13,7 +13,7 @@ on:
     - terraform/**
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
   pull-requests: write
 
@@ -25,6 +25,8 @@ jobs:
     - name: Checkout Repo
       id: checkout_repo
       uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
     - name: Configure AWS Credentials
       id: configure_aws_credentials
       uses: aws-actions/configure-aws-credentials@v2
