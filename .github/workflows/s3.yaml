@@ -5,7 +5,7 @@ on:
     branches:
     - main
     paths:
-    - ctnormand.com
+    - ctnormand.com/**
   
 jobs:
   s3:
