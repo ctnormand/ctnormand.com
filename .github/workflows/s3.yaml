@@ -6,6 +6,10 @@ on:
     - main
     paths:
     - ctnormand.com/**
+
+permissions:
+  contents: read
+  id-token: write
   
 jobs:
   s3:
