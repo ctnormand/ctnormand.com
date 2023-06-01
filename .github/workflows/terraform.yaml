@@ -77,11 +77,11 @@ jobs:
       id: update_terraform_docs
       uses: terraform-docs/gh-actions@main
       if: github.event_name == 'pull_request'
-        with:
-          working-dir: ./terraform
-          output-file: README.md
-          output-method: inject
-          git-push: "true"
+      with:
+        working-dir: ./terraform
+        output-file: README.md
+        output-method: inject
+        git-push: "true"
     - name: Terraform Apply
       id: terraform_apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
