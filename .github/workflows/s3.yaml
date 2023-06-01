@@ -5,7 +5,11 @@ on:
     branches:
     - main
     paths:
-    - ctnormand.com
+    - ctnormand.com/**
+
+permissions:
+  contents: read
+  id-token: write
   
 jobs:
   s3:
