@@ -67,7 +67,7 @@ jobs:
         script: |
           const output = `#### Terraform Format and Style 🖌\`${{ steps.terraform_format.outcome }}\`
           #### Terraform Initialization ⚙️\`${{ steps.terraform_init.outcome }}\`
-          #### Terraform Plan 📖\`${{ steps.terraform_plan.outcome }}\`
+          #### Terraform Plan 📖\`${{ steps.terraform_plan.outcome }}\``
         
           await github.rest.issues.createComment({
             issue_number: context.issue.number,
