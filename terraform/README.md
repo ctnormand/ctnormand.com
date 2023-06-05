@@ -4,6 +4,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.67.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | 3.5.1 |
 
 ## Providers
 
@@ -11,6 +12,7 @@
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.67.0 |
 | <a name="provider_aws.acm_provider"></a> [aws.acm\_provider](#provider\_aws.acm\_provider) | 4.67.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
 
 ## Modules
 
@@ -30,6 +32,8 @@
 | [aws_route53_record.cert_validation](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/resources/route53_record) | resource |
 | [aws_route53_record.root_a](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/resources/route53_record) | resource |
 | [aws_route53_record.www_a](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/resources/route53_record) | resource |
+| [random_password.root_referer_key](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/password) | resource |
+| [random_password.www_referer_key](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/password) | resource |
 | [aws_route53_zone.main](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/data-sources/route53_zone) | data source |
 
 ## Inputs
