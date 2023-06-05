@@ -10,6 +10,12 @@ resource "aws_cloudfront_distribution" "www_distribution" {
       origin_protocol_policy = "http-only"
       origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
     }
+
+    # Used in S3 bucket policy to only allow access from CloudFront
+    custom_header {
+      name  = "Referer"
+      value = random_password.www_referer_key.result
+    }
   }
 
   enabled             = true
@@ -65,11 +71,18 @@ resource "aws_cloudfront_distribution" "root_distribution" {
   origin {
     domain_name = module.root_bucket.s3_bucket_website_endpoint
     origin_id   = "S3-.${var.bucket_name}"
+
     custom_origin_config {
       http_port              = 80
       https_port             = 443
       origin_protocol_policy = "http-only"
       origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+    }
+
+    # Used in S3 bucket policy to only allow access from CloudFront
+    custom_header {
+      name  = "Referer"
+      value = random_password.root_referer_key.result
     }
   }
 
@@ -112,4 +125,14 @@ resource "aws_cloudfront_distribution" "root_distribution" {
   }
 
   tags = var.common_tags
+}
+
+resource "random_password" "www_referer_key" {
+  length  = 32
+  special = false
+}
+
+resource "random_password" "root_referer_key" {
+  length  = 32
+  special = false
 }
