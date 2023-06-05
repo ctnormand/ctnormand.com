@@ -9,7 +9,15 @@ module "www_bucket" {
   restrict_public_buckets  = false
   acl                      = "public-read"
   attach_policy            = true
-  policy                   = templatefile("templates/s3_policy.json", { bucket_name = "www.${var.bucket_name}" })
+
+  policy = templatefile(
+    "templates/s3_policy.json",
+    {
+      bucket_name = "www.${var.bucket_name}",
+      referer_key = random_password.www_referer_key.result
+    }
+  )
+
   website = {
     index_document = "index.html"
     error_document = "404.html"
@@ -37,7 +45,15 @@ module "root_bucket" {
   ignore_public_acls       = false
   restrict_public_buckets  = false
   attach_policy            = true
-  policy                   = templatefile("templates/s3_policy.json", { bucket_name = "${var.bucket_name}" })
+
+  policy = templatefile(
+    "templates/s3_policy.json",
+    {
+      bucket_name = "${var.bucket_name}",
+      referer_key = random_password.root_referer_key.result
+    }
+  )
+
   website = {
     redirect_all_requests_to = {
       host_name = "www.${var.domain_name}"
