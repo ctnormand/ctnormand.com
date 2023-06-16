@@ -42,6 +42,7 @@
 | [aws_route53_record.cert_validation](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/resources/route53_record) | resource |
 | [aws_route53_record.root_a](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/resources/route53_record) | resource |
 | [aws_route53_record.www_a](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/resources/route53_record) | resource |
+| [aws_s3_bucket_notification.www_bucket](https://registry.terraform.io/providers/hashicorp/aws/4.67.0/docs/resources/s3_bucket_notification) | resource |
 | [random_password.root_referer_key](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/password) | resource |
 | [random_password.www_referer_key](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/password) | resource |
 | [archive_file.cloudfront_cache_invalidator](https://registry.terraform.io/providers/hashicorp/archive/2.4.0/docs/data-sources/file) | data source |
