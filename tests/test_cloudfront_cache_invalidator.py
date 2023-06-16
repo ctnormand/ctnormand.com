@@ -2,7 +2,6 @@
 import json
 
 import pytest
-
 from aws_lambda.cloudfront_cache_invalidator.main import handler
 
 pytestmark = pytest.mark.parametrize(
@@ -38,7 +37,7 @@ def test_handler_s3_put(mocker, s3_put_event, key, expected_paths):
     mock_client = mocker.patch(
         "aws_lambda.cloudfront_cache_invalidator.main.cloudfront_client"
     )
-    s3_put_event["Records"][0]["s3"]["object"]["key"] = key
+    s3_put_event["detail"]["object"]["key"] = key
 
     handler(s3_put_event)
 
@@ -59,7 +58,7 @@ def test_handler_s3_delete(mocker, s3_delete_event, key, expected_paths):
     mock_client = mocker.patch(
         "aws_lambda.cloudfront_cache_invalidator.main.cloudfront_client"
     )
-    s3_delete_event["Records"][0]["s3"]["object"]["key"] = key
+    s3_delete_event["detail"]["object"]["key"] = key
 
     handler(s3_delete_event)
 
