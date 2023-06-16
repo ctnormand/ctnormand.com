@@ -58,3 +58,8 @@ module "root_bucket" {
     }
   }
 }
+
+resource "aws_s3_bucket_notification" "www_bucket" {
+  bucket      = module.www_bucket.s3_bucket_id
+  eventbridge = true
+}
