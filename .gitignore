@@ -35,3 +35,29 @@ terraform.rc
 
 # Ignore .DS_Store files
 .DS_Store
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Linting
+.ruff_cache
+
+# Lambda deployment packages
+.deployment_packages
