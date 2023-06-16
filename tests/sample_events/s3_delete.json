@@ -1,37 +1,30 @@
 {
-    "Records": [
-      {
-        "eventVersion": "2.0",
-        "eventSource": "aws:s3",
-        "awsRegion": "us-east-1",
-        "eventTime": "1970-01-01T00:00:00.000Z",
-        "eventName": "ObjectRemoved:Delete",
-        "userIdentity": {
-          "principalId": "EXAMPLE"
-        },
-        "requestParameters": {
-          "sourceIPAddress": "127.0.0.1"
-        },
-        "responseElements": {
-          "x-amz-request-id": "EXAMPLE123456789",
-          "x-amz-id-2": "EXAMPLE123/5678abcdefghijklambdaisawesome/mnopqrstuvwxyzABCDEFGH"
-        },
-        "s3": {
-          "s3SchemaVersion": "1.0",
-          "configurationId": "testConfigRule",
-          "bucket": {
-            "name": "example-bucket",
-            "ownerIdentity": {
-              "principalId": "EXAMPLE"
-            },
-            "arn": "arn:aws:s3:::example-bucket"
-          },
-          "object": {
-            "key": "test%2Fkey",
-            "sequencer": "0A1B2C3D4E5F678901"
-          }
-        }
-      }
-    ]
+  "version": "0",
+  "id": "2ee9cc15-d022-99ea-1fb8-1b1bac4850f9",
+  "detail-type": "Object Deleted",
+  "source": "aws.s3",
+  "account": "111122223333",
+  "time": "2021-11-12T00:00:00Z",
+  "region": "ca-central-1",
+  "resources": [
+    "arn:aws:s3:::DOC-EXAMPLE-BUCKET1"
+  ],
+  "detail": {
+    "version": "0",
+    "bucket": {
+      "name": "DOC-EXAMPLE-BUCKET1"
+    },
+    "object": {
+      "key": "example-key",
+      "etag": "d41d8cd98f00b204e9800998ecf8427e",
+      "version-id": "1QW9g1Z99LUNbvaaYVpW9xDlOLU.qxgF",
+      "sequencer": "617f0837b476e463"
+    },
+    "request-id": "0BH729840619AG5K",
+    "requester": "123456789012",
+    "source-ip-address": "1.2.3.4",
+    "reason": "DeleteObject",
+    "deletion-type": "Delete Marker Created"
   }
-  
+}
+            
