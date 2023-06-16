@@ -27,6 +27,7 @@ jobs:
         aws-region: ${{ vars.AWS_REGION }}
     - name: Sync Bucket
       id: sync_bucket
-      run: aws s3 sync . s3://${{ vars.S3_BUCKET_NAME }}
+      run: |
+        aws s3 sync . s3://${{ vars.S3_BUCKET_NAME }} --size-only --delete
       working-directory: ./ctnormand.com
       shell: bash
