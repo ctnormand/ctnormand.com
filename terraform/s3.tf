@@ -29,8 +29,6 @@ module "www_bucket" {
       max_age_seconds = 3000
     }
   ]
-
-  tags = var.common_tags
 }
 
 module "root_bucket" {
@@ -59,6 +57,4 @@ module "root_bucket" {
       protocol  = "https"
     }
   }
-
-  tags = var.common_tags
 }

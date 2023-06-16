@@ -62,8 +62,6 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.1_2016"
   }
-
-  tags = var.common_tags
 }
 
 # Cloudfront distribution for root (redirects to www subdomain).
@@ -123,8 +121,6 @@ resource "aws_cloudfront_distribution" "root_distribution" {
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.1_2016"
   }
-
-  tags = var.common_tags
 }
 
 resource "random_password" "www_referer_key" {

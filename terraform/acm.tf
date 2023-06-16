@@ -1,3 +1,5 @@
+data "aws_default_tags" "default_tags" {}
+
 resource "aws_acm_certificate" "cert" {
   provider                  = aws.acm_provider
   domain_name               = var.domain_name
@@ -8,7 +10,7 @@ resource "aws_acm_certificate" "cert" {
     create_before_destroy = true
   }
 
-  tags = var.common_tags
+  tags = data.aws_default_tags.default_tags.tags
 }
 
 resource "aws_acm_certificate_validation" "cert_validation" {
