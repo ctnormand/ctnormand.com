@@ -1,6 +1,6 @@
 # Christian Normand's Portfolio
 
-[![Terraform Workflow Badge](https://github.com/ctnormand1/ctnormand.com/actions/workflows/terraform.yaml/badge.svg?event=push)](https://github.com/ctnormand1/ctnormand.com/actions/workflows/terraform.yaml)
+[![Build Workflow Badge](https://github.com/ctnormand1/ctnormand.com/actions/workflows/build.yaml/badge.svg?event=push)](https://github.com/ctnormand1/ctnormand.com/actions/workflows/build.yaml)
 [![S3 Workflow Badge](https://github.com/ctnormand1/ctnormand.com/actions/workflows/s3.yaml/badge.svg)](https://github.com/ctnormand1/ctnormand.com/actions/workflows/s3.yaml)
 
 :computer: Visit my portfolio at [ctnormand.com](https://www.ctnormand.com).
@@ -14,9 +14,12 @@ I'm excited to have these skills in my toolbelt, and I look forward to applying 
 ## Repository Structure
 
 - [root](https://github.com/ctnormand1/ctnormand.com)
-  - [terraform](https://github.com/ctnormand1/ctnormand.com/tree/main/terraform): Everything for deploying infrastructure to AWS.
+  - [aws_lambda](https://github.com/ctnormand1/ctnormand.com/tree/main/aws_lambda)
+    - [cloudfront_cache_invalidator](https://github.com/ctnormand1/ctnormand.com/tree/main/aws_lambda/cloudfront_cache_invalidator): Lambda function to automatically invalidate files from CloudFront edge caches when website content is changed.
   - [ctnormand.com](https://github.com/ctnormand1/ctnormand.com/tree/main/ctnormand.com): Static website content.
-
+  - [terraform](https://github.com/ctnormand1/ctnormand.com/tree/main/terraform): Everything for deploying infrastructure to AWS.
+  - [tests](https://github.com/ctnormand1/ctnormand.com/tree/main/tests): Unit tests for lambda function.
+  
 ## Acknowledgments
 
 - My portfolio uses a slightly modified version of the Miniport template from [HTML5 UP](https://html5up.net/).
