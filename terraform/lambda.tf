@@ -48,6 +48,7 @@ resource "aws_lambda_function" "cloudfront_cache_invalidator" {
   source_code_hash = data.archive_file.cloudfront_cache_invalidator.output_base64sha256
 
   runtime = "python3.9"
+  timeout = 10
 
   environment {
     variables = {
