@@ -2,6 +2,7 @@
 import json
 
 import pytest
+
 from aws_lambda.cloudfront_cache_invalidator.main import handler
 
 pytestmark = pytest.mark.parametrize(
