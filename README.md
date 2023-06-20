@@ -2,6 +2,7 @@
 
 [![Build Workflow Badge](https://github.com/ctnormand1/ctnormand.com/actions/workflows/build.yaml/badge.svg?event=push)](https://github.com/ctnormand1/ctnormand.com/actions/workflows/build.yaml)
 [![S3 Workflow Badge](https://github.com/ctnormand1/ctnormand.com/actions/workflows/s3.yaml/badge.svg)](https://github.com/ctnormand1/ctnormand.com/actions/workflows/s3.yaml)
+[![Coverage Status](https://coveralls.io/repos/github/ctnormand1/ctnormand.com/badge.svg?branch=main)](https://coveralls.io/github/ctnormand1/ctnormand.com?branch=main)
 
 :computer: Visit my portfolio at [ctnormand.com](https://www.ctnormand.com).
 
@@ -13,12 +14,11 @@ I'm excited to have these skills in my toolbelt, and I look forward to applying 
 
 ## Repository Structure
 
-- [root](https://github.com/ctnormand1/ctnormand.com)
-  - [aws_lambda](https://github.com/ctnormand1/ctnormand.com/tree/main/aws_lambda)
-    - [cloudfront_cache_invalidator](https://github.com/ctnormand1/ctnormand.com/tree/main/aws_lambda/cloudfront_cache_invalidator): Lambda function to automatically invalidate files from CloudFront edge caches when website content is changed.
-  - [ctnormand.com](https://github.com/ctnormand1/ctnormand.com/tree/main/ctnormand.com): Static website content.
-  - [terraform](https://github.com/ctnormand1/ctnormand.com/tree/main/terraform): Everything for deploying infrastructure to AWS.
-  - [tests](https://github.com/ctnormand1/ctnormand.com/tree/main/tests): Unit tests for lambda function.
+- [aws_lambda](https://github.com/ctnormand1/ctnormand.com/tree/main/aws_lambda)
+  - [cloudfront_cache_invalidator](https://github.com/ctnormand1/ctnormand.com/tree/main/aws_lambda/cloudfront_cache_invalidator): Lambda function to automatically invalidate files from CloudFront edge caches when website content is changed.
+- [ctnormand.com](https://github.com/ctnormand1/ctnormand.com/tree/main/ctnormand.com): Static website content.
+- [terraform](https://github.com/ctnormand1/ctnormand.com/tree/main/terraform): Everything for deploying infrastructure to AWS.
+- [tests](https://github.com/ctnormand1/ctnormand.com/tree/main/tests): Unit tests for lambda function.
   
 ## Acknowledgments
 
