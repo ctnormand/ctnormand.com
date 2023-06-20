@@ -20,7 +20,7 @@ def handler(event, context=None):
     key = event["detail"]["object"]["key"]
     paths = [f"/{key}"]
 
-    # Must invalidate additoinal paths if modified file is index.html
+    # Must invalidate additional paths if modified file is index.html
     if os.path.basename(key) == "index.html":
         paths.append(f"/{os.path.dirname(key)}")
         if os.path.dirname(key) != "":
