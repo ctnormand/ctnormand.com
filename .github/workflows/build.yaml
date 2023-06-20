@@ -51,8 +51,14 @@ jobs:
     - name: Run Tests
       id: run_tests
       run: |
-        python -m pytest -v tests
+        python -m pytest --cov-report lcov:.coverage.lcov --cov=aws_lambda tests/
       shell: bash
+    - name: Upload Coverage Report
+      id: upload_coverage_report
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: coverallsapp/github-action@v2
+      with:
+        file: .coverage.lcov
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
